@@ -14,6 +14,7 @@ This release is intentionally cloud-free:
 - `packages/stdlib`: `network`, `discord`, `slack`, `vault`
 - `packages/server-kit`: Node webhook adapter (`createBasedHandler`)
 - `packages/cli`: npm package `based-lang`, binary `based`
+- `apps/site`: marketing site (`/`)
 - `apps/docs`: documentation site
 - `apps/playground`: local browser playground (stdlib mocked)
 - `examples`: runnable sample scripts
@@ -26,6 +27,8 @@ pnpm lint
 pnpm typecheck
 pnpm test
 pnpm build
+pnpm build:web
+pnpm verify:web
 ```
 
 ## CLI
@@ -68,6 +71,18 @@ cook main(payload)
 - Docs app: `pnpm dev:docs` then open the shown URL.
 - Playground app: `pnpm dev:playground` then open the shown URL.
 - From CLI: `based docs` opens local docs if available.
+
+## Website Deployment (Single Vercel Project)
+
+- Build command: `pnpm build:web`
+- Output directory: `apps/site/dist`
+- Routes:
+  - `/` marketing
+  - `/docs/` docs
+  - `/playground/` playground
+  - `/docs-md/*.md` markdown mirrors
+  - `/llms.txt` and `/llms-full.txt` AI discovery files
+- Vercel settings are defined in `vercel.json`.
 
 ## License
 

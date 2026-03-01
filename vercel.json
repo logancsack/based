@@ -1,0 +1,56 @@
+{
+  "buildCommand": "pnpm build:web",
+  "outputDirectory": "apps/site/dist",
+  "cleanUrls": true,
+  "headers": [
+    {
+      "source": "/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/docs/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/playground/assets/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/docs",
+      "destination": "/docs/",
+      "permanent": false
+    },
+    {
+      "source": "/playground",
+      "destination": "/playground/",
+      "permanent": false
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/docs/",
+      "destination": "/docs/index.html"
+    },
+    {
+      "source": "/playground/",
+      "destination": "/playground/index.html"
+    }
+  ]
+}

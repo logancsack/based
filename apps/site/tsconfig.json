@@ -1,11 +1,21 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
+    "jsx": "react-jsx",
     "noEmit": true,
-    "allowJs": true,
-    "checkJs": false
+    "types": [
+      "vite/client",
+      "react",
+      "react-dom"
+    ],
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ]
   },
   "include": [
-    "src/**/*"
+    "src/**/*.ts",
+    "src/**/*.tsx"
   ]
 }

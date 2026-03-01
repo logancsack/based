@@ -1,3 +1,9 @@
+import "./playground.css";
+import "@based/web-ui/tokens.css";
+import "@based/web-ui/type.css";
+import "@based/web-ui/motion.css";
+import "@based/web-ui/components.css";
+
 type WorkerResponse =
   | {
       ok: true;
@@ -16,109 +22,46 @@ if (!app) {
 }
 
 app.innerHTML = `
-  <style>
-    :root {
-      --bg: #f4f6fb;
-      --ink: #141e2b;
-      --muted: #5d6a7f;
-      --accent: #0a57ff;
-      --panel: #ffffff;
-      --border: #dbe1ef;
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: "Space Grotesk", "Segoe UI", sans-serif;
-      color: var(--ink);
-      background: radial-gradient(circle at top right, #d9e6ff, transparent 40%), var(--bg);
-    }
-    .wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 24px;
-      display: grid;
-      gap: 14px;
-    }
-    .hero {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 18px;
-    }
-    .hero h1 { margin: 0 0 6px; }
-    .hero p { margin: 0; color: var(--muted); }
-    .grid {
-      display: grid;
-      gap: 14px;
-      grid-template-columns: 2fr 1fr;
-    }
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 14px;
-    }
-    textarea, pre {
-      width: 100%;
-      min-height: 300px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: #0f1726;
-      color: #e8eeff;
-      padding: 12px;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 13px;
-      line-height: 1.5;
-      margin: 0;
-      overflow: auto;
-    }
-    .payload {
-      min-height: 120px;
-      margin-top: 10px;
-    }
-    .actions {
-      margin-top: 12px;
-      display: flex;
-      gap: 10px;
-    }
-    button {
-      border: none;
-      background: var(--accent);
-      color: white;
-      font-weight: 700;
-      border-radius: 8px;
-      padding: 10px 14px;
-      cursor: pointer;
-    }
-    .hint {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-    @media (max-width: 900px) {
-      .grid { grid-template-columns: 1fr; }
-    }
-  </style>
-  <div class="wrap">
-    <section class="hero">
-      <h1>Based Playground</h1>
-      <p>Local-only runner. stdlib calls are mocked in-browser by design.</p>
-    </section>
-    <section class="grid">
-      <div class="card">
-        <h3>Editor</h3>
-        <textarea id="code"></textarea>
-        <h4>Payload JSON</h4>
-        <textarea id="payload" class="payload"></textarea>
-        <div class="actions">
-          <button id="runBtn">Run</button>
-        </div>
-        <p class="hint">Mocked modules: network, discord, slack, vault.</p>
+  <div class="pg-shell">
+    <header class="webui-topnav">
+      <div class="webui-topnav-inner">
+        <a class="webui-brand" href="/">Based Playground</a>
+        <nav aria-label="Primary">
+          <a class="webui-nav-link" href="/docs/">Docs</a>
+          <a class="webui-nav-link" href="/">Home</a>
+        </nav>
       </div>
-      <div class="card">
-        <h3>Output</h3>
-        <pre id="output"></pre>
-      </div>
-    </section>
+    </header>
+
+    <main class="pg-main fade-up">
+      <section class="webui-surface pg-hero">
+        <h1>Run Based in-browser</h1>
+        <p>Worker runtime with mocked stdlib modules so behavior stays explicit and safe.</p>
+      </section>
+
+      <section class="pg-grid">
+        <article class="webui-surface pg-card">
+          <div class="pg-head">
+            <h2>Script</h2>
+            <span id="status" class="pg-status ready">ready</span>
+          </div>
+          <textarea id="code" aria-label="Based code editor"></textarea>
+          <h3>Payload JSON</h3>
+          <textarea id="payload" class="payload" aria-label="Payload JSON"></textarea>
+          <div class="pg-actions">
+            <button id="runBtn" class="webui-btn webui-btn-primary" type="button">Run Script</button>
+          </div>
+          <p class="pg-note">Mocked modules: network, discord, slack, vault.</p>
+        </article>
+
+        <article class="webui-surface pg-card">
+          <div class="pg-head">
+            <h2>Output</h2>
+          </div>
+          <pre id="output"></pre>
+        </article>
+      </section>
+    </main>
   </div>
 `;
 
@@ -126,9 +69,17 @@ const codeInput = app.querySelector<HTMLTextAreaElement>("#code");
 const payloadInput = app.querySelector<HTMLTextAreaElement>("#payload");
 const output = app.querySelector<HTMLElement>("#output");
 const runButton = app.querySelector<HTMLButtonElement>("#runBtn");
+const statusBadgeNode = app.querySelector<HTMLElement>("#status");
 
-if (!codeInput || !payloadInput || !output || !runButton) {
+if (!codeInput || !payloadInput || !output || !runButton || !statusBadgeNode) {
   throw new Error("Missing UI elements");
+}
+
+const statusBadge = statusBadgeNode;
+
+function setStatus(state: "ready" | "running" | "error", label: string) {
+  statusBadge.className = `pg-status ${state}`;
+  statusBadge.textContent = label;
 }
 
 codeInput.value = `yoink network outta stdlib
@@ -140,11 +91,13 @@ cook main(payload)
 `;
 payloadInput.value = `{"name":"Based"}`;
 output.textContent = "ready";
+setStatus("ready", "ready");
 
 const worker = new Worker(new URL("./runner.worker.ts", import.meta.url), { type: "module" });
 
 worker.addEventListener("message", (event: MessageEvent<WorkerResponse>) => {
   if (event.data.ok) {
+    setStatus("ready", "success");
     output.textContent = JSON.stringify(
       {
         output: event.data.output,
@@ -156,6 +109,7 @@ worker.addEventListener("message", (event: MessageEvent<WorkerResponse>) => {
     return;
   }
 
+  setStatus("error", "error");
   output.textContent = JSON.stringify(
     {
       output: event.data.output,
@@ -167,6 +121,7 @@ worker.addEventListener("message", (event: MessageEvent<WorkerResponse>) => {
 });
 
 runButton.addEventListener("click", () => {
+  setStatus("running", "running");
   output.textContent = "running...";
   worker.postMessage({
     code: codeInput.value,

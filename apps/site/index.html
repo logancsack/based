@@ -3,74 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Based | Meme-First Programming Language</title>
+    <title>Based | Build Bots In Slang</title>
     <meta
       name="description"
-      content="Based is a slang-first programming language for bots and webhooks. Install the CLI, read docs, and run code in the playground."
+      content="Based is a meme-first language for production webhooks and bots. Install the CLI, read docs, and ship quickly."
     />
     <meta property="og:title" content="Based Programming Language" />
     <meta
       property="og:description"
-      content="Meme-first syntax, real runtime utility. Install Based CLI and start building today."
+      content="Meme-first syntax. Real runtime utility. Build webhooks and bots in pure slang."
     />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://based.vercel.app/" />
     <link rel="canonical" href="https://based.vercel.app/" />
-    <script type="module" src="/src/main.ts"></script>
+    <script type="module" src="/src/main.tsx"></script>
   </head>
   <body>
-    <header class="topbar">
-      <a class="brand" href="/">Based</a>
-      <nav>
-        <a href="/docs/">Docs</a>
-        <a href="/playground/">Playground</a>
-        <a href="https://github.com/logancsack/based" target="_blank" rel="noreferrer">GitHub</a>
-      </nav>
-    </header>
-
-    <main class="shell">
-      <section class="hero">
-        <p class="tag">Meme-first language. Real utility.</p>
-        <h1>Build webhooks and bots in pure slang.</h1>
-        <p class="lead">
-          Based is a dynamic scripting language with indentation syntax, batteries-included stdlib, and a local-first
-          toolchain for shipping fast.
-        </p>
-        <div class="cta-row">
-          <button id="copy-install" type="button">Copy Install Command</button>
-          <a class="btn ghost" href="/docs/">Read Docs</a>
-          <a class="btn ghost" href="/playground/">Open Playground</a>
-        </div>
-        <pre><code id="install-cmd">npm install -g based-lang</code></pre>
-      </section>
-
-      <section class="grid">
-        <article>
-          <h2>Language Core</h2>
-          <p>`sus`, `nah`, `cook`, and `secure` map to familiar control flow while keeping code readable and fun.</p>
-        </article>
-        <article>
-          <h2>CLI + Self-Host</h2>
-          <p>Use `based run`, `based check`, `based fmt`, and `based serve` to execute scripts and host webhook handlers.</p>
-        </article>
-        <article>
-          <h2>Agent-Ready Docs</h2>
-          <p>Ship both human HTML and markdown mirrors at `/docs-md`, plus `/llms.txt` and `/llms-full.txt` for AI indexing.</p>
-        </article>
-      </section>
-
-      <section class="sample">
-        <h2>Sample Script</h2>
-        <pre><code>yoink network outta stdlib
-
-cook main(payload)
-  lowkey res is network.get("https://httpbin.org/get")
-  secure {
-    ok: bet,
-    upstream: res.status,
-    payload: payload
-  }</code></pre>
-      </section>
-    </main>
+    <div id="root"></div>
   </body>
 </html>

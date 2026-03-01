@@ -13,6 +13,9 @@
       ],
       "@based/server-kit": [
         "packages/server-kit/src/index.ts"
+      ],
+      "@based/web-ui": [
+        "packages/web-ui/src/index.ts"
       ]
     },
     "strict": true,

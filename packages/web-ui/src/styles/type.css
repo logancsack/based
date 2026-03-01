@@ -1,0 +1,37 @@
+@import url("https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&display=swap");
+
+:root {
+  --font-sans: "Satoshi", "Avenir Next", "Segoe UI", sans-serif;
+  --font-mono: "Geist Mono", "SFMono-Regular", "Consolas", monospace;
+
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-md: 16px;
+  --text-lg: 20px;
+  --text-xl: 28px;
+  --text-2xl: 44px;
+
+  --leading-tight: 1.1;
+  --leading-body: 1.6;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  line-height: var(--leading-body);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-sans);
+  letter-spacing: -0.015em;
+  line-height: var(--leading-tight);
+}
+
+code,
+pre {
+  font-family: var(--font-mono);
+}

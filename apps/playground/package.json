@@ -12,7 +12,8 @@
     "test": "node -e \"console.log('playground: no tests')\""
   },
   "dependencies": {
-    "@based/lang-core": "workspace:*"
+    "@based/lang-core": "workspace:*",
+    "@based/web-ui": "workspace:*"
   },
   "devDependencies": {
     "vite": "^7.2.2"

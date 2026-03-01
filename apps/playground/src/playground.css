@@ -1,0 +1,138 @@
+.pg-shell {
+  min-height: 100vh;
+  background:
+    radial-gradient(960px 440px at 94% -8%, rgba(14, 143, 136, 0.16), transparent 64%),
+    radial-gradient(780px 330px at -15% 10%, rgba(170, 220, 212, 0.48), transparent 66%),
+    var(--bg-0);
+}
+
+.pg-main {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: var(--space-7) var(--space-5) var(--space-9);
+  display: grid;
+  gap: var(--space-5);
+}
+
+.pg-hero h1 {
+  margin: 0 0 var(--space-2);
+  font-size: clamp(var(--text-xl), 4vw, 38px);
+}
+
+.pg-hero p {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.pg-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: var(--space-4);
+}
+
+.pg-card {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-5);
+}
+
+.pg-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pg-head h2 {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.pg-status {
+  min-height: 40px;
+  padding: 0 var(--space-4);
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--line-subtle);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.pg-status.ready {
+  background: #ebfaf7;
+  color: #0f6a64;
+}
+
+.pg-status.running {
+  background: #fff7e8;
+  color: #7c5d1f;
+}
+
+.pg-status.error {
+  background: #ffecee;
+  color: #92313a;
+}
+
+textarea,
+pre {
+  width: 100%;
+  margin: 0;
+  border-radius: var(--r-md);
+  border: 1px solid var(--code-line);
+  background: linear-gradient(165deg, #11212d, var(--code-bg));
+  color: var(--text-inverse);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+  padding: var(--space-4);
+}
+
+textarea {
+  min-height: 320px;
+}
+
+textarea.payload {
+  min-height: 130px;
+}
+
+pre {
+  min-height: 530px;
+  overflow: auto;
+}
+
+.pg-card h3 {
+  margin: var(--space-2) 0 0;
+  font-size: var(--text-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.pg-actions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.pg-note {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 990px) {
+  .pg-grid {
+    grid-template-columns: 1fr;
+  }
+
+  pre {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 680px) {
+  .pg-main {
+    padding: var(--space-6) var(--space-4) var(--space-8);
+  }
+}

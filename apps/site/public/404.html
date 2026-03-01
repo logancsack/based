@@ -5,36 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Based | Not Found</title>
     <style>
+      @import url("https://api.fontshare.com/v2/css?f[]=satoshi@500,700,900&display=swap");
       body {
         margin: 0;
         min-height: 100vh;
         display: grid;
         place-items: center;
-        background: #f4f6fb;
-        color: #171f30;
-        font-family: "Space Grotesk", "Segoe UI", sans-serif;
+        background:
+          radial-gradient(860px 360px at 105% -5%, rgba(14, 143, 136, 0.22), transparent 66%),
+          radial-gradient(710px 300px at -15% 10%, rgba(170, 220, 212, 0.52), transparent 68%),
+          #f7f4ee;
+        color: #0f1722;
+        font-family: "Satoshi", "Segoe UI", sans-serif;
       }
       .card {
         width: min(92vw, 560px);
-        background: #fff;
-        border: 1px solid #d9e0ef;
-        border-radius: 14px;
-        padding: 24px;
+        background: #fffdf9;
+        border: 1px solid #e0d9ce;
+        border-radius: 18px;
+        padding: 30px;
+        box-shadow: 0 12px 36px rgba(12, 20, 28, 0.11);
       }
       a {
-        color: #0b56ff;
+        color: #0a736d;
         text-decoration: none;
+        font-weight: 700;
       }
       .links {
         display: flex;
         gap: 14px;
+      }
+      p {
+        color: #5e6a77;
       }
     </style>
   </head>
   <body>
     <main class="card">
       <h1>Page not found</h1>
-      <p>The path you requested does not exist in the Based website.</p>
+      <p>The path you requested does not exist in this deployment. Jump back to a valid Based route.</p>
       <div class="links">
         <a href="/">Home</a>
         <a href="/docs/">Docs</a>

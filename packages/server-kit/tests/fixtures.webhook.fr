@@ -1,0 +1,2 @@
+cook main(payload)
+  secure payload.value + 1

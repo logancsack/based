@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Based Docs</title>
+    <style>
+      :root {
+        --bg: #f6f7f4;
+        --panel: #ffffff;
+        --ink: #1f242f;
+        --muted: #596375;
+        --accent: #155bff;
+        --border: #e0e5ef;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+        background: radial-gradient(circle at 10% 0%, #dfe8ff, transparent 50%), var(--bg);
+        color: var(--ink);
+      }
+      .layout {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        min-height: 100vh;
+      }
+      nav {
+        border-right: 1px solid var(--border);
+        padding: 24px 16px;
+        background: #f9fbff;
+        position: sticky;
+        top: 0;
+        height: 100vh;
+      }
+      nav h1 {
+        margin: 0 0 12px;
+        font-size: 1.3rem;
+      }
+      nav a {
+        display: block;
+        padding: 6px 8px;
+        color: var(--muted);
+        text-decoration: none;
+        border-radius: 8px;
+      }
+      nav a:hover {
+        background: #e8efff;
+        color: var(--accent);
+      }
+      main {
+        padding: 32px;
+        max-width: 1000px;
+      }
+      section {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+      h2 {
+        margin-top: 0;
+      }
+      pre {
+        background: #101625;
+        color: #e7ecff;
+        padding: 14px;
+        border-radius: 10px;
+        overflow-x: auto;
+      }
+      code {
+        font-family: "IBM Plex Mono", "Consolas", monospace;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid var(--border);
+        padding: 8px;
+        text-align: left;
+      }
+      @media (max-width: 900px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+        nav {
+          position: static;
+          height: auto;
+          border-right: none;
+          border-bottom: 1px solid var(--border);
+        }
+        main {
+          padding: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <nav>
+        <h1>Based Docs</h1>
+        <a href="#quickstart">Quickstart</a>
+        <a href="#language">Language Reference</a>
+        <a href="#stdlib">Stdlib</a>
+        <a href="#self-host">Self-Host Guide</a>
+        <a href="#cookbook">Cookbook</a>
+        <a href="#troubleshooting">Troubleshooting</a>
+      </nav>
+      <main>
+        <section id="quickstart">
+          <h2>Quickstart</h2>
+          <pre><code>pnpm install
+pnpm build
+pnpm --filter based-lang run based -- check examples/hello.fr
+pnpm --filter based-lang run based -- run examples/hello.fr
+pnpm --filter based-lang run based -- serve --entry examples/webhook.fr --port 3000</code></pre>
+          <p>Scripts are indentation-based and use the <code>.fr</code> extension.</p>
+        </section>
+
+        <section id="language">
+          <h2>Language Reference</h2>
+          <table>
+            <thead>
+              <tr><th>Concept</th><th>Based Syntax</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Mutable/const vars</td><td><code>lowkey</code> / <code>highkey</code></td></tr>
+              <tr><td>Boolean</td><td><code>bet</code> / <code>cap</code></td></tr>
+              <tr><td>Assign</td><td><code>is</code></td></tr>
+              <tr><td>Equals / not equals</td><td><code>twins</code> / <code>beefing</code></td></tr>
+              <tr><td>Greater / less</td><td><code>mogs</code> / <code>flops</code></td></tr>
+              <tr><td>If / else</td><td><code>sus</code> / <code>nah</code></td></tr>
+              <tr><td>While / for-in</td><td><code>spam</code> / <code>binge ... in</code></td></tr>
+              <tr><td>Function / return</td><td><code>cook</code> / <code>secure</code></td></tr>
+              <tr><td>Try / catch</td><td><code>sendit</code> / <code>fumbled drama</code></td></tr>
+              <tr><td>Import</td><td><code>yoink ... outta ...</code></td></tr>
+            </tbody>
+          </table>
+          <pre><code>yoink network, vault outta stdlib
+
+cook main(payload)
+  lowkey name is payload.name
+  sus name twins "logan"
+    secure bet
+  nah
+    secure cap</code></pre>
+          <p>Comments: <code>// comment</code> and <code># comment</code>.</p>
+        </section>
+
+        <section id="stdlib">
+          <h2>Stdlib Reference</h2>
+          <h3>network</h3>
+          <pre><code>yoink network outta stdlib
+lowkey res is network.get("https://api.example.com")
+yap res.status
+yap res.body</code></pre>
+          <h3>vault</h3>
+          <pre><code>yoink vault outta stdlib
+lowkey token is vault.get("API_TOKEN")</code></pre>
+          <h3>discord/slack</h3>
+          <pre><code>yoink discord, slack outta stdlib
+discord.send("Deployment shipped")
+slack.send("Webhook ping complete")</code></pre>
+          <p>Set env vars: <code>DISCORD_WEBHOOK_URL</code>, <code>SLACK_WEBHOOK_URL</code>.</p>
+        </section>
+
+        <section id="self-host">
+          <h2>Self-Host Deployment Guide (Node + Docker)</h2>
+          <pre><code># Local server
+based serve --entry examples/webhook.fr --port 3000 --secret supersecret
+
+# Docker
+docker build -t based-local-runner .
+docker run -p 3000:3000 -e DISCORD_WEBHOOK_URL=... based-local-runner</code></pre>
+          <p>Webhook requests should include <code>x-based-signature</code> when a secret is configured.</p>
+        </section>
+
+        <section id="cookbook">
+          <h2>Cookbook</h2>
+          <ul>
+            <li>Webhook handler: parse payload and return transformed JSON.</li>
+            <li>Discord notifier: send a message when an event is received.</li>
+            <li>Slack notifier: publish status updates to a channel webhook.</li>
+            <li>API bridge: fetch from an API with <code>network.get</code> and forward the result.</li>
+          </ul>
+          <pre><code>yoink network, discord outta stdlib
+
+cook main(payload)
+  lowkey weather is network.get("https://api.example.com/weather")
+  discord.send("Weather update: " + weather.status)
+  secure { ok: bet, status: weather.status }</code></pre>
+        </section>
+
+        <section id="troubleshooting">
+          <h2>Troubleshooting and Error Catalog</h2>
+          <ul>
+            <li><code>Mixed indentation style at the same depth</code>: do not mix tabs and spaces in one block depth.</li>
+            <li><code>Cannot reassign highkey</code>: use <code>lowkey</code> for mutable vars.</li>
+            <li><code>No module provider configured for yoink</code>: run through CLI/server runtime, not raw parser only.</li>
+            <li><code>network call blocked</code>: configure allowlist if host restrictions are enabled.</li>
+          </ul>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

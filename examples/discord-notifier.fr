@@ -1,0 +1,7 @@
+yoink discord outta stdlib
+
+cook main(payload)
+  lowkey name is payload.name
+  lowkey status is payload.status
+  discord.send("deploy " + name + " is " + status)
+  secure { sent: bet, service: name }

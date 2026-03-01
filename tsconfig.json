@@ -1,0 +1,23 @@
+{
+  "files": [],
+  "references": [
+    {
+      "path": "./packages/lang-core"
+    },
+    {
+      "path": "./packages/stdlib"
+    },
+    {
+      "path": "./packages/server-kit"
+    },
+    {
+      "path": "./packages/cli"
+    },
+    {
+      "path": "./apps/docs"
+    },
+    {
+      "path": "./apps/playground"
+    }
+  ]
+}

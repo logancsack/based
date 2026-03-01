@@ -1,0 +1,27 @@
+{
+  "name": "based-lang",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "bin": {
+    "based": "dist/bin.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "lint": "eslint src tests --ext .ts",
+    "based": "tsx src/bin.ts"
+  },
+  "dependencies": {
+    "@based/lang-core": "workspace:*",
+    "@based/server-kit": "workspace:*",
+    "@based/stdlib": "workspace:*",
+    "fast-glob": "^3.3.3",
+    "open": "^10.2.0"
+  }
+}

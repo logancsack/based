@@ -1,0 +1,5 @@
+lowkey greeting is "Hello from Based"
+yap greeting
+
+cook main(payload)
+  secure { message: greeting, payload: payload }

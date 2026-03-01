@@ -1,0 +1,9 @@
+yoink network outta stdlib
+
+cook main(payload)
+  lowkey ping is network.get("https://httpbin.org/get")
+  secure {
+    ok: bet,
+    upstream: ping.status,
+    payload: payload
+  }

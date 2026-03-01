@@ -151,6 +151,7 @@ async function ensureDirExists(dirPath) {
 }
 
 async function main() {
+  await run("pnpm", ["--filter", "@based/lang-core", "build"]);
   await run("pnpm", ["--filter", "@based/docs", "exec", "vite", "build", "--base", "/docs/"]);
   await run("pnpm", ["--filter", "@based/playground", "exec", "vite", "build", "--base", "/playground/"]);
   await run("pnpm", ["--filter", "@based/site", "exec", "vite", "build", "--base", "/"]);

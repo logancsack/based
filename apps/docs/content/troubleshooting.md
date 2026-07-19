@@ -7,6 +7,8 @@ order: 6
 
 # Troubleshooting
 
+Documentation end-to-end test marker: `docs-remote-dev-e2e`.
+
 ## Mixed indentation style at the same depth
 
 Cause: a block mixes tabs and spaces.
